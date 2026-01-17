@@ -2,9 +2,26 @@
 
 # Skrypt do uruchamiania testów z poprawną wersją Java
 
-export JAVA_HOME=/Users/roque/Library/Java/JavaVirtualMachines/corretto-17.0.13/Contents/Home
+# Najpierw spróbuj przeczytać z local.properties (plik lokalny, nie commitowany)
+if [ -f "local.properties" ]; then
+    JAVA_HOME_FROM_FILE=$(grep "^java.home=" local.properties | cut -d'=' -f2-)
+    if [ -n "$JAVA_HOME_FROM_FILE" ]; then
+        export JAVA_HOME="$JAVA_HOME_FROM_FILE"
+        export PATH=$JAVA_HOME/bin:$PATH
+        echo "🔧 Używam Java z local.properties: $JAVA_HOME"
+    else
+        # Fallback na domyślną ścieżkę
+        export JAVA_HOME=/Users/roque/Library/Java/JavaVirtualMachines/corretto-17.0.13/Contents/Home
+        export PATH=$JAVA_HOME/bin:$PATH
+        echo "🔧 Brak java.home w local.properties, używam domyślnej Java: $JAVA_HOME"
+    fi
+else
+    # Brak pliku local.properties, użyj domyślnej ścieżki
+    export JAVA_HOME=/Users/roque/Library/Java/JavaVirtualMachines/corretto-17.0.13/Contents/Home
+    export PATH=$JAVA_HOME/bin:$PATH
+    echo "🔧 Brak local.properties, używam domyślnej Java: $JAVA_HOME"
+fi
 
-echo "🔧 Używam Java 17: $JAVA_HOME"
 echo ""
 
 ./gradlew clean test --console=plain
