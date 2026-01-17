@@ -16,7 +16,7 @@ class ThrottleStateDecoder {
 
         val throttleOpen = ((data[0].toInt() and 0b00000010) shr 1) == 0
         val requestedThrottleMap = (data[1].toInt() and 0b01000000) shr 6
-        val rideMode = mapRideMode(data[1].toInt(), data[3].toInt())
+        val rideMode = mapRideMode((data[1].toInt() and 0xFF), (data[3].toInt() and 0xFF))
 
         return ThrottleData(
             throttleOpen = throttleOpen,
@@ -49,10 +49,12 @@ class ThrottleStateDecoder {
             0xAD -> "Rain"
             0x2D -> "Street"
             0x6D -> "Sport"
-            0xED -> "Track"
-            0x53 -> "Rain"    // alternatywne mapowanie dla innych modeli
-            0x13 -> "Track"   // alternatywne mapowanie dla innych modeli
+            0xED -> "Track"            
             0x89 -> "Unknown"
+            0xC9 -> "OFF"
+
+            // 0xC9 / 0x3C modeByte 0x-37 statusByte=0x3C => wylaczony zaplon
+
             else -> "0x${modeByte.toString(16).uppercase()} / 0x${statusByte.toString(16).uppercase()}"
         }
     }
