@@ -50,6 +50,8 @@ class ThrottleStateDecoder {
             0x2D -> "Street"
             0x6D -> "Sport"
             0xED -> "Track"
+            0x53 -> "Rain"    // alternatywne mapowanie dla innych modeli
+            0x13 -> "Track"   // alternatywne mapowanie dla innych modeli
             0x89 -> "Unknown"
             else -> "0x${modeByte.toString(16).uppercase()} / 0x${statusByte.toString(16).uppercase()}"
         }
