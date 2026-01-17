@@ -15,4 +15,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ktm-can"
+rootProject.name = "ktm-can-lib"
