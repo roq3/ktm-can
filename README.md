@@ -115,3 +115,7 @@ CAN ID 0x650: Low Beam=ON, High Beam=OFF, DRL=ON
 ## Autor
 
 Damian Podoba - https://github.com/roq3
+
+## Licencja
+
+MIT
