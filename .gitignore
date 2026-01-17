@@ -1,0 +1,45 @@
+# Gradle
+.gradle/
+build/
+
+# Kotlin
+*.class
+*.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# IntelliJ IDEA
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Coverage reports
+coverage/
+
+# Maven (fallback)
+target/
+
+# Local configuration
+local.properties
